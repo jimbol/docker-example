@@ -1,4 +1,7 @@
-# Docker class notes
+# Docker tutorial notes
+# Part I: Simple docker commands
+*Based off of https://www.youtube.com/watch?v=MnDT1aB39hQ*
+
 Docker is a flexible wrapper around many types of applications. DBs, web servers, and others. It is supposed to make composing all these easy. And to make running code in N environments easy. It also is more efficient than vms since it doesnt need a whole OS. It just uses the host OS.
 
 ## Set up
@@ -17,12 +20,13 @@ Or just try to run the image and it will be auto downloaded
 docker run -it -p 80:80 nginx
 ```
 
+```
 `docker run`    run the server
 `-it`           interactive mode or `-d` for detached mode
 `-p 80:80`      map internal port 80 to external port 80
                 `<localhost port>:<internal docker port>`
 `nginx`         the name of the image that we want to run
-
+```
 
 Verify its running by going to `localhost:80`. You will see the default Nginx page.
 
@@ -91,7 +95,7 @@ cat index.html
 ```
 
 ### Put our own content into the container
-We can use "volumes" to connect files from outside the container into the continer. We will "mount" the volume on our locally machine into the target folder.
+We can use "volumes" to connect files from outside the container into the container. We will "mount" the volume on our locally machine into the target folder.
 
 I've made a file called `Desktop/docker-volume/index.html` on my desktop. We will move it to the container.
 
@@ -117,9 +121,11 @@ The start the container
 docker build -t custom-image-1 .
 ```
 
+```
 `docker build`                The build command
 `-t custom-image-1`    Name the image
 `.`                           location of the folder to build a custom image
+```
 
 ### Running custom image
 ```
@@ -142,7 +148,7 @@ Push a new tag like so
 docker push dynamojim/custom-image-1:tagname
 ```
 
-## Services
+# Part II: Docker Services
 *Based off of https://www.youtube.com/watch?v=hS-czwYyTpo*
 
 You can combine or connect multiple docker images. Say, a db and a web server.
