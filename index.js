@@ -8,7 +8,8 @@ const PORT = 4000;
 let Todo = require('./todo.model');
 
 app.use(bodyParser.json());
-mongoose.connect('mongodb://mongo:27017/todos', {
+const MONGO_SERVICE_NAME = 'mongodb';
+mongoose.connect(`mongodb://${MONGO_SERVICE_NAME}:27017/todos`, {
   useNewUrlParser: true,
 });
 const connection = mongoose.connection;
